@@ -31,11 +31,23 @@ add_action( 'init', 'wp_dspace_query_block_init' );
 add_action( 'rest_api_init', function () {
     register_rest_route( 'dspace-block/v1', '/search', array(
         'methods'             => 'GET',
-        'callback'            => 'wplearn_handle_dspace_proxy_request',
+        'callback'            => 'wp_dspace_query_handle_dspace_proxy_request',
         'permission_callback' => function() {
             // Secure: Restrict endpoint to users who can actually edit posts in the dashboard
             return current_user_can( 'edit_posts' );
         },
+        'args'                => array(
+			'author' => array(
+				'type'              => 'string',
+				'default'           => 'Minerva',
+				'sanitize_callback' => 'sanitize_text_field',
+			),
+			'size'   => array(
+				'type'              => 'integer',
+				'default'           => 2,
+				'sanitize_callback' => 'absint',
+			),
+		),
     ) );
 } );
 
