@@ -1,0 +1,23 @@
+[
+  {
+    "id": "10234/5678",
+    "title": "An Analysis of Open Access Repositories in 2026",
+    "author": "Dr. Jane Doe",
+    "date": "2026-03-15",
+    "url": "https://repository.example.edu/handle/10234/5678"
+  },
+  {
+    "id": "10234/5679",
+    "title": "Machine Learning Efficiencies in Metadata Harvesting",
+    "author": "John Smith",
+    "date": "2025-11-02",
+    "url": "https://repository.example.edu/handle/10234/5679"
+  },
+  {
+    "id": "10234/5680",
+    "title": "Climate Data Modeling and Long-term Preservation Protocols",
+    "author": "Dr. Jane Doe",
+    "date": "2026-01-20",
+    "url": "https://repository.example.edu/handle/10234/5680"
+  }
+]

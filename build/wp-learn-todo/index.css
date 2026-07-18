@@ -1,0 +1,44 @@
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/wp-learn-todo/editor.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-wp-learn-todo {
+  border: 1px dotted #f00;
+}
+
+.dspace-query-preview-box {
+  background: #f9f9f9;
+  border: 1px dashed #ccc;
+  padding: 20px;
+  border-radius: 4px;
+}
+.dspace-query-preview-box h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #1e1e1e;
+}
+.dspace-query-preview-box .dspace-results-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 15px;
+}
+.dspace-query-preview-box .dspace-item {
+  margin-bottom: 10px;
+}
+.dspace-query-preview-box .dspace-item a {
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+.dspace-query-preview-box .dspace-meta {
+  display: block;
+  font-size: 12px;
+  color: #757575;
+  margin-top: 2px;
+}
+
+/*# sourceMappingURL=index.css.map*/
