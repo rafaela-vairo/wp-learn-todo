@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Wp DSpace Query (WIP)
+ * Plugin Name:       Wp DSpace Query
  * Description:       Custom Gutenberg block querying external DSpace repositories cleanly.
  * Version:           0.1.0
  * Requires at least: 6.8
@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php`.
  */
-function create_block_wp_learn_todo_block_init() {
+function wp_dspace_query_block_init() {
     wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
 }
-add_action( 'init', 'create_block_wp_learn_todo_block_init' );
+add_action( 'init', 'wp_dspace_query_block_init' );
 
 /**
  * Register a custom secure endpoint wrapper for DSpace inside the plugin.
