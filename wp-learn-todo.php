@@ -54,13 +54,11 @@ add_action( 'rest_api_init', function () {
 /**
  * Callback function to fetch and return DSpace data securely server-side.
  */
-function wplearn_handle_dspace_proxy_request( $request ) {
-    $author = $request->get_param( 'author' );
-    $size   = $request->get_param( 'size' );
+function wp_dspace_query_handle_dspace_proxy_request( $request ) {
+    $author = trim( $request->get_param( 'author' ) );
 
-    // Sanitize parameters and ensure fallbacks
-    $author = ! empty( $author ) ? trim( $author ) : 'Smith';
-    $size   = ! empty( $size ) ? intval( $size ) : 2;
+    // Limita o tamanho para evitar payloads excessivos vindos do DSpace
+    $size = min( max( (int) $request->get_param( 'size' ), 1 ), 50 );
 
     $url = sprintf(
         'https://demo.dspace.org/server/api/discover/search/objects?query=author:%s&size=%d',
