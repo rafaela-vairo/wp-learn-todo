@@ -17,6 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+// Permite sobrescrever via wp-config.php (ex: define('WP_DSPACE_QUERY_HOST', 'https://dspace.suarede.interna'))
+if ( ! defined( 'WP_DSPACE_QUERY_HOST' ) ) {
+	define( 'WP_DSPACE_QUERY_HOST', 'https://demo.dspace.org' );
+}
+
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php`.
  */
@@ -33,7 +38,7 @@ add_action( 'rest_api_init', function () {
         'methods'             => 'GET',
         'callback'            => 'wp_dspace_query_handle_dspace_proxy_request',
         'permission_callback' => function() {
-            // Secure: Restrict endpoint to users who can actually edit posts in the dashboard
+            // Uso interno apenas: professores/editores da rede. Não expor busca a visitantes do site.
             return current_user_can( 'edit_posts' );
         },
         'args'                => array(
@@ -61,7 +66,8 @@ function wp_dspace_query_handle_dspace_proxy_request( $request ) {
     $size = min( max( (int) $request->get_param( 'size' ), 1 ), 50 );
 
     $url = sprintf(
-        'https://demo.dspace.org/server/api/discover/search/objects?query=author:%s&size=%d',
+        '%s/server/api/discover/search/objects?query=author:%s&size=%d',
+        untrailingslashit( WP_DSPACE_QUERY_HOST ),
         rawurlencode( $author ),
         $size
     );
