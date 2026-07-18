@@ -66,6 +66,12 @@ function wp_dspace_query_handle_dspace_proxy_request( $request ) {
         $size
     );
 
+	$cache_key = 'wp_dspace_query_' . md5( $url );
+	$cached    = get_transient( $cache_key );
+	if ( false !== $cached ) {
+		return new WP_REST_Response( $cached, 200 );
+	}
+
     // Fetch from DSpace with a reliable User-Agent
     $response = wp_remote_get( $url, array(
         'timeout'    => 15,
@@ -88,6 +94,8 @@ function wp_dspace_query_handle_dspace_proxy_request( $request ) {
     if ( json_last_error() !== JSON_ERROR_NONE ) {
         return new WP_REST_Response( array( 'error' => 'Invalid JSON signature from remote repository' ), 500 );
     }
+
+    set_transient( $cache_key, $data, 5 * MINUTE_IN_SECONDS ); // Cache for 5 minutes
     
     return new WP_REST_Response( $data, 200 );
 }
